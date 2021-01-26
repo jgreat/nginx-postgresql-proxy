@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "nginx-postgresql-proxy.name" . }}
+  labels:
+    {{- include "nginx-postgresql-proxy.labels" . | nindent 4 }}
+spec:
+  type: ClusterIP
+  ports:
+    - port: 5432
+      targetPort: postgresql
+      protocol: TCP
+      name: postgresql
+  selector:
+    {{- include "nginx-postgresql-proxy.selectorLabels" . | nindent 4 }}

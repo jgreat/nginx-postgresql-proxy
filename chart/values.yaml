@@ -1,0 +1,43 @@
+image:
+  repository: jgreat/nginx-postgresql-proxy
+  # Overrides the image tag - default is appVersion.
+  tag: ""
+
+imagePullSecrets: []
+nameOverride: ""
+fullNameOverride: ""
+
+podSecurityContext:
+  fsGroup: 101
+  runAsUser: 101
+  runAsGroup: 101
+
+securityContext:
+  capabilities:
+    drop:
+    - ALL
+  readOnlyRootFilesystem: true
+
+resources:
+  limits:
+    cpu: 100m
+    memory: 128Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+# A configMap containing a `data.hostname:` and `data.port:` entry
+# This will override `hostname:` and `port:` values
+databaseConfigMap:
+  useExisting: false
+  name: ""
+
+# Hostname and port of the upstream database.
+hostname: ""
+port: "5432"

@@ -1,0 +1,7 @@
+Simple postgresql forwarder.
+
+port-forward the service to connect to your db.
+
+kubectl port-forward service/{{ include "nginx-postgresql-proxy.fullName" . }} 5432:postgresql
+
+psql "postgres://<user>:<password>@127.0.0.1:5432/postgres?sslmode=require"

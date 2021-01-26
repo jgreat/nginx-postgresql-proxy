@@ -1,0 +1,11 @@
+{{- if eq false .Values.databaseConfigMap.useExisting }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "nginx-postgresql-proxy.fullName" . }}
+  labels:
+    {{- include "nginx-postgresql-proxy.labels" . | nindent 4 }}
+data:
+  hostname: {{ .Values.hostname | quote }}
+  port: {{ .Values.port | quote }}
+{{- end }}
